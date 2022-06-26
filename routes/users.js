@@ -16,8 +16,8 @@ router.post("/sign-up", async function (req, res, next) {
   var userList = await userModel.find();
 
   // Condition in existing of user
-  let alreadyExist = await userModel.findOne({ name: req.body.name });
-  if (alreadyExist == null && req.body.name) {
+  let alreadyExist = await userModel.findOne({ email: req.body.email, password : req.body.password});
+  if (alreadyExist == null && req.body.email) {
     // Create the session object by body objet (method POST)
     req.session.name = req.body.name;
     req.session.email = req.body.email;
